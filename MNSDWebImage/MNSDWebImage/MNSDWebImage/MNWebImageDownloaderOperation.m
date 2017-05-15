@@ -12,9 +12,15 @@
 
 - (void)main {
     //线程睡眠,模拟网络延时
-    //[NSThread sleepForTimeInterval:5];
+    [NSThread sleepForTimeInterval:5];
     
    // NSLog(@"%@",[NSThread currentThread]);
+    
+    //如果当前操作标记为取消状态,直接return,不做成功前的回调.
+    if (self.isCancelled) {
+        
+        return;
+    }
     
     NSURL *url = [NSURL URLWithString:self.urlStr];
     NSData *data = [NSData dataWithContentsOfURL:url];
