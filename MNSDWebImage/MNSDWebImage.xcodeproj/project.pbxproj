@@ -13,6 +13,7 @@
 		6F1BD48C1EC97EE8006C4C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1BD48A1EC97EE8006C4C09 /* Main.storyboard */; };
 		6F1BD48E1EC97EE8006C4C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1BD48D1EC97EE8006C4C09 /* Assets.xcassets */; };
 		6F1BD4911EC97EE8006C4C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1BD48F1EC97EE8006C4C09 /* LaunchScreen.storyboard */; };
+		6F1BD49A1EC98132006C4C09 /* MNWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4991EC98132006C4C09 /* MNWebImageDownloaderOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		6F1BD48D1EC97EE8006C4C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1BD4901EC97EE8006C4C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1BD4921EC97EE8006C4C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F1BD4981EC98132006C4C09 /* MNWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		6F1BD4991EC98132006C4C09 /* MNWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNWebImageDownloaderOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		6F1BD4801EC97EE8006C4C09 /* MNSDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				6F1BD49B1EC98153006C4C09 /* MNSDWebImage */,
 				6F1BD4841EC97EE8006C4C09 /* AppDelegate.h */,
 				6F1BD4851EC97EE8006C4C09 /* AppDelegate.m */,
 				6F1BD4871EC97EE8006C4C09 /* ViewController.h */,
@@ -77,6 +81,15 @@
 				6F1BD4821EC97EE8006C4C09 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6F1BD49B1EC98153006C4C09 /* MNSDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				6F1BD4981EC98132006C4C09 /* MNWebImageDownloaderOperation.h */,
+				6F1BD4991EC98132006C4C09 /* MNWebImageDownloaderOperation.m */,
+			);
+			name = MNSDWebImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +165,7 @@
 			files = (
 				6F1BD4891EC97EE8006C4C09 /* ViewController.m in Sources */,
 				6F1BD4861EC97EE8006C4C09 /* AppDelegate.m in Sources */,
+				6F1BD49A1EC98132006C4C09 /* MNWebImageDownloaderOperation.m in Sources */,
 				6F1BD4831EC97EE8006C4C09 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
