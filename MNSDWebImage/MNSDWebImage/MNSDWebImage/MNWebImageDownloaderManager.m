@@ -39,6 +39,15 @@
     return instance;
 }
 
+-(instancetype)init {
+    
+    if (self = [super init]) {
+        //监听内存警告的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearMemory) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+    }
+    return self;
+}
+
 #pragma mark - 下载图片
 -(void)downloaderImageWithURLStr:(NSString *)urlStr andSuccessBlock:(void(^)(UIImage *image))successBlock {
     
@@ -147,6 +156,17 @@
     }
     
     return _queue;
+}
+
+#pragma mark - 清除内存
+-(void)clearMemory {
+    //清除操作缓存池
+    [self.opCache removeAllObjects];
+    //清除图片缓存池
+    [self.imagesCache removeAllObjects];
+    //取消队列中的所有操作
+    [self.queue cancelAllOperations];
+
 }
 
 @end
