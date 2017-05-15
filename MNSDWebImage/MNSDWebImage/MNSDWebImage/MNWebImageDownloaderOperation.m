@@ -12,7 +12,7 @@
 
 - (void)main {
     //线程睡眠,模拟网络延时
-    [NSThread sleepForTimeInterval:5];
+   // [NSThread sleepForTimeInterval:5];
     
    // NSLog(@"%@",[NSThread currentThread]);
     

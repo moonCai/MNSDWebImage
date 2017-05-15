@@ -20,6 +20,11 @@
  */
 @property (nonatomic,strong) NSMutableDictionary<NSString *, MNWebImageDownloaderOperation *> *opCache;
 
+/**
+ 图片缓存池
+ */
+@property (nonatomic,strong) NSMutableDictionary *imagesCache;
+
 @end
 
 @implementation MNWebImageDownloaderManager
@@ -34,9 +39,22 @@
     return instance;
 }
 
+#pragma mark - 下载图片
 -(void)downloaderImageWithURLStr:(NSString *)urlStr andSuccessBlock:(void(^)(UIImage *image))successBlock {
     
+    //判断内存中是否有需要下载的图片
+    if ([self.imagesCache valueForKey:urlStr] != nil) {
+        NSLog(@"从内存中加载图片");
+        successBlock([self.imagesCache valueForKey:urlStr]);
+        return;
+    }
+    
     MNWebImageDownloaderOperation *op = [MNWebImageDownloaderOperation webImageDownloaderOperationWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
+        //判断图片是否存在
+        if (image) {
+            
+            [self.imagesCache setValue:image forKey:urlStr];
+        }
         
         if (successBlock) {
             
@@ -64,6 +82,7 @@
     
 }
 
+#pragma mark- 取消操作
 -(void)cancelOperationWithlastURL:(NSString *)lastURL {
     
     //取消上一次操作
@@ -73,6 +92,14 @@
     [self.opCache removeObjectForKey:lastURL];
     
     
+}
+
+//懒加载图片缓存池
+-(NSMutableDictionary *)imagesCache {
+    if (!_imagesCache) {
+        _imagesCache = [[NSMutableDictionary alloc] init];
+    }
+    return _imagesCache;
 }
 
 //懒加载缓存池
