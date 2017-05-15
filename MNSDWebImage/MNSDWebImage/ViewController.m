@@ -7,9 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "AFNetworking.h"
 #import "MNWebImageDownloaderOperation.h"
+#import "YYModel.h"
+#import "HMAppModel.h"
 
 @interface ViewController ()
+
+@property (nonatomic,strong) NSArray<HMAppModel *> *dataArray;
 
 /**
  操作缓存池
@@ -39,12 +44,16 @@
     
     self.imgView = imageView;
     
+    //加载网络数据
+    [self loadImagestData];
     
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
-    NSString *urlStr = @"http://p16.qhimg.com/dr/48_48_/t0125e8d438ae9d2fbb.png";
+    NSInteger randomNum = arc4random() % self.dataArray.count;
+
+    NSString *urlStr = self.dataArray[randomNum].icon;
     
     if ([_opCache valueForKey:urlStr]) {
         
@@ -53,7 +62,7 @@
         return;
     }
     
-    MNWebImageDownloaderOperation *op = [MNWebImageDownloaderOperation webImageDownloaderOperationWithURLStr:@"http://p16.qhimg.com/dr/48_48_/t0125e8d438ae9d2fbb.png" andSuccessBlock:^(UIImage *image) {
+    MNWebImageDownloaderOperation *op = [MNWebImageDownloaderOperation webImageDownloaderOperationWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
         
         self.imgView.image = image;
         
@@ -68,6 +77,26 @@
     
     [self.queue addOperation:op];
     
+}
+
+#pragma mark - 请求网络数据
+-(void)loadImagestData {
+    
+    //创建网络请求对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager GET:@"https://raw.githubusercontent.com/gitfyq/hm24_loadImageData/master/apps.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.dataArray = [NSArray yy_modelArrayWithClass:[HMAppModel class] json:responseObject];
+        
+        NSLog(@"self.dataArray - %@",self.dataArray);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (error) {
+            NSLog(@"加载异常原因:%@",error);
+        }
+    }];
+
 }
 
 //懒加载缓存池
