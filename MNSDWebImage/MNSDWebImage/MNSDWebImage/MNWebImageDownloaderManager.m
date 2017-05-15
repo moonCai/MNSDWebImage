@@ -30,7 +30,7 @@
     dispatch_once(&onceToken, ^{
         instance = [[MNWebImageDownloaderManager alloc] init];
     });
-
+    
     return instance;
 }
 
@@ -50,11 +50,29 @@
         
     }];
     
+    if ([_opCache objectForKey:urlStr]) {
+        
+        NSLog(@"图片下载中");
+        
+        return;
+    }
+    
     //将操作添加到缓存池中
     [self.opCache setValue:op forKey:urlStr];
     
     [self.queue addOperation:op];
+    
+}
 
+-(void)cancelOperationWithlastURL:(NSString *)lastURL {
+    
+    //取消上一次操作
+    [[self.opCache valueForKey:lastURL] cancel];
+    
+    //从缓存池中移除上一次操作
+    [self.opCache removeObjectForKey:lastURL];
+    
+    
 }
 
 //懒加载缓存池

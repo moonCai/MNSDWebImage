@@ -23,11 +23,6 @@
 @property (nonatomic,strong) NSArray<HMAppModel *> *dataArray;
 
 /**
- 操作缓存池
- */
-@property (nonatomic,strong) NSMutableDictionary<NSString *, MNWebImageDownloaderOperation *> *opCache;
-
-/**
  展示图片的imageView
  */
 @property (nonatomic,weak) UIImageView *imgView;
@@ -57,34 +52,25 @@
         NSInteger randomNum = arc4random() % self.dataArray.count;
         
         NSString *urlStr = self.dataArray[randomNum].icon;
-       //如果当前的操作跟上一次操作不同
+        //如果当前的操作跟上一次操作不同
         if (self.lastURLStr && ![self.lastURLStr isEqualToString:urlStr] ) {
             
             NSLog(@"又要取消上一次操作");
-            //取消上一次操作
-            [[self.opCache valueForKey:_lastURLStr] cancel];
             
-            //从缓存池中移除上一次操作
-            [self.opCache removeObjectForKey:_lastURLStr];
+            [[MNWebImageDownloaderManager sharedManager] cancelOperationWithlastURL:self.lastURLStr];
         }
         
         self.lastURLStr = urlStr;
         
-        if ([_opCache objectForKey:urlStr]) {
-            
-            NSLog(@"图片下载中");
-            
-            return;
-        }
         
         [[MNWebImageDownloaderManager sharedManager] downloaderImageWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
-              self.imgView.image = image;
+            self.imgView.image = image;
         }];
         
         
     }
     
-   
+    
     
 }
 
@@ -105,7 +91,7 @@
             NSLog(@"加载异常原因:%@",error);
         }
     }];
-
+    
 }
 
 

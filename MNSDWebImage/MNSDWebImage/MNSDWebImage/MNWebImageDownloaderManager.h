@@ -13,6 +13,10 @@
 
 +(instancetype)sharedManager;
 
+//下载图片
 -(void)downloaderImageWithURLStr:(NSString *)urlStr andSuccessBlock:(void(^)(UIImage *image))successBlock;
+
+//取消操作
+-(void)cancelOperationWithlastURL:(NSString *)lastURL;
 
 @end
