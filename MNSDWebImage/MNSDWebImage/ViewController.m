@@ -11,6 +11,7 @@
 #import "MNWebImageDownloaderOperation.h"
 #import "YYModel.h"
 #import "HMAppModel.h"
+#import "MNWebImageDownloaderManager.h"
 
 @interface ViewController ()
 
@@ -25,11 +26,6 @@
  操作缓存池
  */
 @property (nonatomic,strong) NSMutableDictionary<NSString *, MNWebImageDownloaderOperation *> *opCache;
-
-/**
- 全局队列
- */
-@property (nonatomic,strong) NSOperationQueue *queue;
 
 /**
  展示图片的imageView
@@ -81,20 +77,11 @@
             return;
         }
         
-        MNWebImageDownloaderOperation *op = [MNWebImageDownloaderOperation webImageDownloaderOperationWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
-            
-            self.imgView.image = image;
-            
-            NSLog(@"图片下载成功");
-            
-            [self.opCache removeObjectForKey:urlStr];
-            
+        [[MNWebImageDownloaderManager sharedManager] downloaderImageWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
+              self.imgView.image = image;
         }];
         
-        //将操作添加到缓存池中
-        [self.opCache setValue:op forKey:urlStr];
         
-        [self.queue addOperation:op];
     }
     
    
@@ -121,25 +108,7 @@
 
 }
 
-//懒加载缓存池
--(NSMutableDictionary<NSString *,MNWebImageDownloaderOperation *> *)opCache {
-    
-    if (!_opCache) {
-        _opCache = [[NSMutableDictionary alloc] init];
-    }
 
-    return _opCache;
-}
-
-//懒加载操作队列
--(NSOperationQueue *)queue {
-    
-    if (!_queue) {
-        _queue = [[NSOperationQueue alloc] init];
-    }
-
-    return _queue;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
