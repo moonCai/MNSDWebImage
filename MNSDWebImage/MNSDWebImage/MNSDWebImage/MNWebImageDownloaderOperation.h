@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+path.h"
 #import <UIKit/UIKit.h>
 
 @interface MNWebImageDownloaderOperation : NSOperation

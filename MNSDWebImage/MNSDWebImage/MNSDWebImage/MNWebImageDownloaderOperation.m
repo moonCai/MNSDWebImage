@@ -25,6 +25,13 @@
     NSURL *url = [NSURL URLWithString:self.urlStr];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
+    //将图片存入沙盒
+    if (image) {
+        
+        [data writeToFile:[self.urlStr appendCachePath] atomically:YES];
+        
+        NSLog(@"%@",[self.urlStr appendCachePath]);
+    }
     
     if (self.successBlock) {
         //切换主线程

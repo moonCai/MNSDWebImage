@@ -24,6 +24,7 @@
 		6F1BD4BC1EC9B4C7006C4C09 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4B91EC9B4C7006C4C09 /* YYClassInfo.m */; };
 		6F1BD4BF1EC9C749006C4C09 /* HMAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4BE1EC9C749006C4C09 /* HMAppModel.m */; };
 		6F1BD4C21EC9F677006C4C09 /* MNWebImageDownloaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4C11EC9F677006C4C09 /* MNWebImageDownloaderManager.m */; };
+		6F1BD4C51ECA0C1A006C4C09 /* NSString+path.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		6F1BD4BE1EC9C749006C4C09 /* HMAppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAppModel.m; sourceTree = "<group>"; };
 		6F1BD4C01EC9F677006C4C09 /* MNWebImageDownloaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNWebImageDownloaderManager.h; sourceTree = "<group>"; };
 		6F1BD4C11EC9F677006C4C09 /* MNWebImageDownloaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNWebImageDownloaderManager.m; sourceTree = "<group>"; };
+		6F1BD4C31ECA0C1A006C4C09 /* NSString+path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+path.h"; sourceTree = "<group>"; };
+		6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+path.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 		6F1BD49C1EC9B496006C4C09 /* MNSDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				6F1BD4C31ECA0C1A006C4C09 /* NSString+path.h */,
+				6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */,
 				6F1BD49D1EC9B496006C4C09 /* MNWebImageDownloaderOperation.h */,
 				6F1BD49E1EC9B496006C4C09 /* MNWebImageDownloaderOperation.m */,
 				6F1BD4C01EC9F677006C4C09 /* MNWebImageDownloaderManager.h */,
@@ -251,6 +256,7 @@
 				6F1BD4B41EC9B4AD006C4C09 /* AFURLSessionManager.m in Sources */,
 				6F1BD4C21EC9F677006C4C09 /* MNWebImageDownloaderManager.m in Sources */,
 				6F1BD4861EC97EE8006C4C09 /* AppDelegate.m in Sources */,
+				6F1BD4C51ECA0C1A006C4C09 /* NSString+path.m in Sources */,
 				6F1BD4B01EC9B4AD006C4C09 /* AFNetworkReachabilityManager.m in Sources */,
 				6F1BD4BB1EC9B4C7006C4C09 /* NSObject+YYModel.m in Sources */,
 				6F1BD4831EC97EE8006C4C09 /* main.m in Sources */,

@@ -42,19 +42,20 @@
 #pragma mark - 下载图片
 -(void)downloaderImageWithURLStr:(NSString *)urlStr andSuccessBlock:(void(^)(UIImage *image))successBlock {
     
-    //判断内存中是否有需要下载的图片
-    if ([self.imagesCache valueForKey:urlStr] != nil) {
-        NSLog(@"从内存中加载图片");
-        successBlock([self.imagesCache valueForKey:urlStr]);
+    //判断内存或者沙盒中是否有需要加载的图片
+    if([self checkImageWithURLStr:urlStr]) {
+        successBlock([self.imagesCache objectForKey:urlStr]);
         return;
     }
     
     MNWebImageDownloaderOperation *op = [MNWebImageDownloaderOperation webImageDownloaderOperationWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
-        //判断图片是否存在
+        //判断图片是否存在,保存到内存缓存池中
         if (image) {
             
             [self.imagesCache setValue:image forKey:urlStr];
+            
         }
+        
         
         if (successBlock) {
             
@@ -79,6 +80,32 @@
     [self.opCache setValue:op forKey:urlStr];
     
     [self.queue addOperation:op];
+    
+}
+
+#pragma mark- 判断内存或者沙盒中是否有需要加载的图片
+- (BOOL)checkImageWithURLStr:(NSString *)urlStr {
+    
+    //判断内存中是否有需要下载的图片
+    if ([self.imagesCache valueForKey:urlStr] != nil) {
+        NSLog(@"从内存中加载图片");
+        // successBlock([self.imagesCache valueForKey:urlStr]);
+        return YES;
+    }
+    
+    //判断沙盒中是否有需要加载的图片
+    UIImage *tempImage = [UIImage imageWithContentsOfFile:[urlStr appendCachePath]];
+    if (tempImage) {
+        
+        NSLog(@"从沙盒中获取图片");
+        //将图片存储到内存中
+        [self.imagesCache setObject:tempImage forKey:urlStr];
+        
+        return YES;
+        
+    }
+    
+    return NO;
     
 }
 
