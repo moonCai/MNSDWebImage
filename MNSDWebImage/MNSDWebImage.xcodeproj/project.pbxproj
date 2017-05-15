@@ -25,6 +25,7 @@
 		6F1BD4BF1EC9C749006C4C09 /* HMAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4BE1EC9C749006C4C09 /* HMAppModel.m */; };
 		6F1BD4C21EC9F677006C4C09 /* MNWebImageDownloaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4C11EC9F677006C4C09 /* MNWebImageDownloaderManager.m */; };
 		6F1BD4C51ECA0C1A006C4C09 /* NSString+path.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */; };
+		6F1BD4C81ECA1618006C4C09 /* UIImageView+web.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1BD4C71ECA1618006C4C09 /* UIImageView+web.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		6F1BD4C11EC9F677006C4C09 /* MNWebImageDownloaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNWebImageDownloaderManager.m; sourceTree = "<group>"; };
 		6F1BD4C31ECA0C1A006C4C09 /* NSString+path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+path.h"; sourceTree = "<group>"; };
 		6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+path.m"; sourceTree = "<group>"; };
+		6F1BD4C61ECA1618006C4C09 /* UIImageView+web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+web.h"; sourceTree = "<group>"; };
+		6F1BD4C71ECA1618006C4C09 /* UIImageView+web.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+web.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 			children = (
 				6F1BD4C31ECA0C1A006C4C09 /* NSString+path.h */,
 				6F1BD4C41ECA0C1A006C4C09 /* NSString+path.m */,
+				6F1BD4C61ECA1618006C4C09 /* UIImageView+web.h */,
+				6F1BD4C71ECA1618006C4C09 /* UIImageView+web.m */,
 				6F1BD49D1EC9B496006C4C09 /* MNWebImageDownloaderOperation.h */,
 				6F1BD49E1EC9B496006C4C09 /* MNWebImageDownloaderOperation.m */,
 				6F1BD4C01EC9F677006C4C09 /* MNWebImageDownloaderManager.h */,
@@ -247,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1BD4B11EC9B4AD006C4C09 /* AFSecurityPolicy.m in Sources */,
+				6F1BD4C81ECA1618006C4C09 /* UIImageView+web.m in Sources */,
 				6F1BD4BF1EC9C749006C4C09 /* HMAppModel.m in Sources */,
 				6F1BD4B31EC9B4AD006C4C09 /* AFURLResponseSerialization.m in Sources */,
 				6F1BD4891EC97EE8006C4C09 /* ViewController.m in Sources */,

@@ -11,14 +11,12 @@
 #import "MNWebImageDownloaderOperation.h"
 #import "YYModel.h"
 #import "HMAppModel.h"
-#import "MNWebImageDownloaderManager.h"
+#import "UIImageView+web.h"
+
 
 @interface ViewController ()
 
-/**
- 上一次操作的加载路径
- */
-@property (nonatomic,copy) NSString *lastURLStr;
+
 
 @property (nonatomic,strong) NSArray<HMAppModel *> *dataArray;
 
@@ -52,26 +50,12 @@
         NSInteger randomNum = arc4random() % self.dataArray.count;
         
         NSString *urlStr = self.dataArray[randomNum].icon;
-        //如果当前的操作跟上一次操作不同
-        if (self.lastURLStr && ![self.lastURLStr isEqualToString:urlStr] ) {
-            
-            NSLog(@"又要取消上一次操作");
-            
-            [[MNWebImageDownloaderManager sharedManager] cancelOperationWithlastURL:self.lastURLStr];
-        }
-        
-        self.lastURLStr = urlStr;
-        
-        
-        [[MNWebImageDownloaderManager sharedManager] downloaderImageWithURLStr:urlStr andSuccessBlock:^(UIImage *image) {
-            self.imgView.image = image;
-        }];
-        
+
+        //请求网络图片
+        [self.imgView mn_imageWithURLStr:urlStr];
         
     }
-    
-    
-    
+  
 }
 
 #pragma mark - 请求网络数据
